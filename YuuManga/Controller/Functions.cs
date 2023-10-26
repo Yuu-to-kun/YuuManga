@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -62,6 +63,25 @@ namespace YuuManga.Controller
                 });
             });
             
+            
+        }
+
+        public async Task starterList(ListView listView)
+        {
+            await Task.Run(() =>
+            {
+                YuuScrapeLib.Functions scrapeFunctions = new YuuScrapeLib.Functions();
+                var series = scrapeFunctions.getSeries("https://mangasee123.com/search/?name=a", GlobalObjects.Driver);
+                GlobalObjects.SerieList = series;
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    listView.Items.Clear();
+                    for (int i = 0; i < GlobalObjects.SerieList.Count; i++)
+                    {
+                        listView.Items.Add(GlobalObjects.SerieList[i]);
+                    }
+                });
+            });
             
         }
     }

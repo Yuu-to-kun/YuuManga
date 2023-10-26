@@ -27,21 +27,23 @@ namespace YuuManga
         public MainWindow()
         {
 
-            //this.Hide();
+            this.Hide();
             InitializeComponent();
            
         }
 
-        private void Window_Initialized(object sender, EventArgs e)
+        private async void Window_Initialized(object sender, EventArgs e)
         {
-            //await LoadAsync();
+            await LoadAsync();
         }
         public async Task LoadAsync()
         {
             Initialization initialization = new Initialization();
             await initialization.Initialize();
             GlobalObjects.LoadingWindow.Close();
+            Functions functions = new Functions();
             this.Show();
+            await functions.starterList(listView);
 
         }
 

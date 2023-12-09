@@ -21,7 +21,7 @@ namespace YuuManga.Controller
             await Task.Run(() =>
             {
                 while (true)
-                {
+                { 
                     var timer = GlobalObjects.Timer.Enabled;
                     var searching = GlobalObjects.IsSearching;
 
